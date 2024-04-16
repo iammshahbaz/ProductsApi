@@ -16,6 +16,15 @@ productRoutes.post('/products',async(req,res)=>{
 
 })
 
+productRoutes.get("/products",async(req,res)=>{
+    try {
+        const products = await ProductModel.find(req.query)
+        res.send({"products":products})
+    } catch (error) {
+        res.send({"error":error})
+    }
+})
+
 module.exports={
     productRoutes
 }

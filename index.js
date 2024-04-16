@@ -2,10 +2,12 @@ const express = require("express");
 const {connection} = require("./Config/db")
 const {productRoutes} = require("./Routes/productRoutes")
 require("dotenv").config()
+const cors = require("cors")
 
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.get('/',async(req,res)=>{
 await req.json

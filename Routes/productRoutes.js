@@ -25,6 +25,16 @@ productRoutes.get("/products",async(req,res)=>{
     }
 })
 
+productRoutes.get("/products/:id",async(req,res)=>{
+    let productId = req.params.id;
+    try {
+        const product = await ProductModel.findOne({_id:productId})
+        res.send({"product":product})
+    } catch (error) {
+        res.send({"error":error})
+    }
+})
+
 module.exports={
     productRoutes
 }

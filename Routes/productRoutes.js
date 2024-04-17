@@ -18,7 +18,12 @@ productRoutes.post('/products',async(req,res)=>{
 
 productRoutes.get("/products",async(req,res)=>{
     try {
-        const products = await ProductModel.find(req.query)
+        let query ={}
+        // if(req.query.name){
+        //  query.alias ={$regex:req.query.name,$options: `i`}
+        // }
+        const limit = parseInt(req.query.limit)
+        const products = await ProductModel.find(query).limit(limit)
         res.send({"products":products})
     } catch (error) {
         res.send({"error":error})
